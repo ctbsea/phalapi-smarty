@@ -1,4 +1,4 @@
-#基于PhalApi的Smarty拓展
+#基于PhalApi 2.*的Smarty拓展
 
 ![](http://webtools.qiniudn.com/master-LOGO-20150410_50.jpg)
 

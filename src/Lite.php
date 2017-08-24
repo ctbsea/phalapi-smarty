@@ -1,4 +1,6 @@
 <?php
+namespace PhalApi\Smarty;
+
 /**
  * Created by PhpStorm.
  * Author: yidiec

@@ -1,0 +1,24 @@
+{
+    "name": "ctbsea/smarty",
+    "description": "基于Smarty模版的处理，专门用于PhalApi 2.x 开源接口框架。",
+    "keywords": ["smarty", "phalapi"],
+    "homepage": "http://www.phalapi.net",
+    "license" : "GPL-3.0+",
+    "authors": [
+        {
+            "name": "ctbsea",
+            "email": "chen1teng2bin3@126.com",
+            "homepage" : "https://github.com/ctbsea",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "PhalApi\\Smarty\\": "src"
+        }
+    }
+
+}
