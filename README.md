@@ -26,14 +26,6 @@ composer.json添加
 
 ##初始化Smarty
 
-PhalApi-Smarty的初始化也和其他拓展一样,我们只需要把上方**PhalApi Library**中的Smarty文件目录放到需要用到的项目的拓展中即可.
-
-但是view拓展和其他拓展有一些本质的区别就是需要有存放view页面的地方,这里使用一个干净的PhalApi项目进行演示,我们在public下创建如下结构
-
-![](http://i.imgur.com/rTNjNgC.png)
-
-然后我们在init末尾中加入如下代码:
-	
 	//接受一个参数,参数为view的路径
 	DI()->smarty = new Smarty_Lite('view');
 
