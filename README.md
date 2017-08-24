@@ -5,7 +5,10 @@
 ##前言##
 ***先在这里感谢phalapi框架创始人@dogstar,为我们提供了这样一个优秀的开源框架.***
 
-用过的童鞋都知道PhalApi是一个Api框架不提供view层的功能,但是很多童鞋有开发一个自己管理自己API的web界面的需求,或者是个人后台,那么是否意味着要去在学习另外一种框架来实现呢?**当然不是**在之前也有童鞋放出过一个View拓展,使用之后还是有一些不方便的地方,所以引入一个比较老牌的PHP模版引擎**Smarty**来解决这类问题,本拓展提供了对Smarty的封装,而且Smarty内容比较多在此处不会依依交与大家使用,希望的童鞋可以自己探索关于Smarty的功能,有不便之处需要封装与之联系!
+
+借鉴于 第一个版本的 https://github.com/phalapi/phalapi-library/tree/master/Smarty
+
+使用同第一个版本基本无差异
 
 **注:本拓展并没有开发完成,也没进行严格的测试,此版本为还处于开发阶段的鉴赏版.**
 
@@ -28,7 +31,7 @@ PhalApi-Smarty的初始化也和其他拓展一样,我们只需要把上方**Pha
 然后我们在init末尾中加入如下代码:
 	
 	//接受一个参数,参数为view的路径
-	DI()->smarty = new Smarty_Lite('view');
+	$di->smarty = new \PhalApi\Smarty\Lite() ;
 
 现在我们就已经初始化好了PhalApi-Smarty
 

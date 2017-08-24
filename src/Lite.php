@@ -4,28 +4,33 @@ namespace PhalApi\Smarty;
 /**
  * Created by PhpStorm.
  * Author: yidiec
- * CreateTime: 2016/6/27 17:04
- * Description: <请描述这个类是干什么的>
- * Versioncode: 1 <每次修改提交前+1>
+ * alert:  chentb
+ * CreateTime: 2017/8/24 14:04
+ * Description: 支持phalapi2.0
+ * Versioncode: 2.0.0
  */
 require_once(dirname(__FILE__) . '/Smarty/Smarty.class.php');
 
-class Smarty_Lite extends Smarty {
+class Lite extends \Smarty {
 
     //模板相对路径
     protected $p_dir = 'View';
     //视图类型
     protected $p_type = 'Default';
     //接口模块名称
+    protected $module = "";
+    //接口类名称
     protected $apiClassName = "";
     //接口名称
     protected $action = "";
 
-    public function __construct($templateDir) {
+    //目录根据s参数目录定位view的目录
+    public function __construct($templateDir = "View") {
 
         //获取模块名
-        $service = DI()->request->get('service', 'Default.Index');
-        list($this->apiClassName, $this->action) = explode('.', $service);
+        $service = \PhalApi\DI()->request->getService();
+        list($this->module ,$this->apiClassName, $this->action) = explode('.', $service);
+        $this->module = strtolower($this->module) ;
 
         parent::__construct();
         if (!empty($templateDir)) {
@@ -34,7 +39,7 @@ class Smarty_Lite extends Smarty {
         if (!empty($this->apiClassName)) {
             $this->p_type = $this->apiClassName;
         }
-        $dir = array(API_ROOT."/Public/$this->p_dir/$this->p_type/");
+        $dir = array(API_ROOT."/src/$this->module/$this->p_dir/$this->p_type/");
         $this->setTemplateDir($dir);
     }
 
