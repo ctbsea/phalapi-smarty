@@ -21,9 +21,6 @@ PhalApi Library:[http://git.oschina.net/dogstar/PhalApi-Library](http://git.osch
 composer.json添加
 
     "require": {
-        "php": ">=5.3.3",
-        "phalapi/kernal": "2.0.*",
-        "phalapi/task": "2.0.*",
         "ctbsea/phalapi-smarty": "2.0.0"
     },
 
