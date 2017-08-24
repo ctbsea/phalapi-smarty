@@ -5,10 +5,7 @@
 ##前言##
 ***先在这里感谢phalapi框架创始人@dogstar,为我们提供了这样一个优秀的开源框架.***
 
-
-借鉴于 第一个版本的 https://github.com/phalapi/phalapi-library/tree/master/Smarty
-
-使用同第一个版本基本无差异
+用过的童鞋都知道PhalApi是一个Api框架不提供view层的功能,但是很多童鞋有开发一个自己管理自己API的web界面的需求,或者是个人后台,那么是否意味着要去在学习另外一种框架来实现呢?**当然不是**在之前也有童鞋放出过一个View拓展,使用之后还是有一些不方便的地方,所以引入一个比较老牌的PHP模版引擎**Smarty**来解决这类问题,本拓展提供了对Smarty的封装,而且Smarty内容比较多在此处不会依依交与大家使用,希望的童鞋可以自己探索关于Smarty的功能,有不便之处需要封装与之联系!
 
 **注:本拓展并没有开发完成,也没进行严格的测试,此版本为还处于开发阶段的鉴赏版.**
 
@@ -19,6 +16,16 @@
 开源中国Git地址:[http://git.oschina.net/dogstar/PhalApi/tree/release](http://git.oschina.net/dogstar/PhalApi/tree/release "开源中国Git地址")
 
 PhalApi Library:[http://git.oschina.net/dogstar/PhalApi-Library](http://git.oschina.net/dogstar/PhalApi-Library "PhalApi Library")
+
+##安装  
+composer.json添加
+
+    "require": {
+        "php": ">=5.3.3",
+        "phalapi/kernal": "2.0.*",
+        "phalapi/task": "2.0.*",
+        "ctbsea/phalapi-smarty": "2.0.0"
+    },
 
 ##初始化Smarty
 
@@ -31,7 +38,7 @@ PhalApi-Smarty的初始化也和其他拓展一样,我们只需要把上方**Pha
 然后我们在init末尾中加入如下代码:
 	
 	//接受一个参数,参数为view的路径
-	$di->smarty = new \PhalApi\Smarty\Lite() ;
+	DI()->smarty = new Smarty_Lite('view');
 
 现在我们就已经初始化好了PhalApi-Smarty
 
@@ -84,19 +91,19 @@ PhalApi-Smarty的初始化也和其他拓展一样,我们只需要把上方**Pha
 	</BODY>
 	</HTML>
 
+此时我们再次运行Default.Index接口就有如下显示:
 
-## 支持多命名空间
+![](http://i.imgur.com/rlIjGI2.png)
 
-s=Hello.word
+setParams函数作为参数的媒介把接口中获取的参数放到模版里面进行处理,接受一个数组具体实现是对每一个参数进行**assign**操作,具体可以参考Smarty
 
-这个时候我们访问App.Hello.word接口(App默认是省略的)
+我们在show默认不传递参数是,会更具模块名和接口名来匹配对于的模版,比如Default.Index就会匹配到view/Default/Index.tpl,当然我们也可以指定跳转到摸个模版,比如创建一个模版名称为test.tpl,然后创建一个Default.test接口,我们在index接口进行一些修改
+	
+	DI()->smarty->show("Default.test");
 
-访问的目录 src/app/View/Hello/word.tpl
+这个时候我们访问Default.Index接口的时候就会先执行Default.Index的代码然后在执行,test方法的代码最好渲染Default中的test.tpl模版
 
-s=User.Weibo.login
-这个时候我们访问User.Hello.word接口 
-
-访问的目录 src/user/View/Weibo/login.tpl
+**注意:show跳转其他模块接口会执行跳转的接口,如果有参数验证会被拦截,所以使用场景比较适合处理用户登录过时跳转登录页面重新登录这类业务**
 
 ##其他
 
