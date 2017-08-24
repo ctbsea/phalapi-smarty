@@ -1,4 +1,5 @@
 <?php
+
 namespace PhalApi\Smarty;
 
 /**
@@ -11,7 +12,8 @@ namespace PhalApi\Smarty;
  */
 require_once(dirname(__FILE__) . '/Smarty/Smarty.class.php');
 
-class Lite extends \Smarty {
+class Lite extends \Smarty
+{
 
     //模板相对路径
     protected $p_dir = 'View';
@@ -25,12 +27,13 @@ class Lite extends \Smarty {
     protected $action = "";
 
     //目录根据s参数目录定位view的目录
-    public function __construct($templateDir = "View") {
+    public function __construct($templateDir = "View")
+    {
 
         //获取模块名
         $service = \PhalApi\DI()->request->getService();
-        list($this->module ,$this->apiClassName, $this->action) = explode('.', $service);
-        $this->module = strtolower($this->module) ;
+        list($this->module, $this->apiClassName, $this->action) = explode('.', $service);
+        $this->module = strtolower($this->module);
 
         parent::__construct();
         if (!empty($templateDir)) {
@@ -39,14 +42,16 @@ class Lite extends \Smarty {
         if (!empty($this->apiClassName)) {
             $this->p_type = $this->apiClassName;
         }
-        $dir = array(API_ROOT."/src/$this->module/$this->p_dir/$this->p_type/");
+        //只精确到view目录 不精确到具体的类和action
+        $dir = array(API_ROOT . "/src/$this->module/$this->p_dir/");
         $this->setTemplateDir($dir);
     }
 
     /**
      * 注入参数
      */
-    public function setParams($param = array()) {
+    public function setParams($param = array())
+    {
 
         foreach ($param as $k => $v) {
             $this->assign($k, $v);
@@ -55,29 +60,15 @@ class Lite extends \Smarty {
 
     /**
      * 渲染模板
+     *  如果$tpl 不为空 则应该输入全局路径
      */
-    public function show($Api = "") {
-
-        if ($Api != "") {
-            list($apiClassName, $action) = explode('.', $Api);
-
-            if ($apiClassName != "" && $action != "" && ($apiClassName != $this->apiClassName || $action != $this->action)) {
-                $Class = 'Api_' . ucfirst($apiClassName);
-                $apiClass = new $Class();
-                $apiClass->init();
-                $this->action = $action;
-                $this->apiClassName = $apiClassName;
-
-                //重新定义目录
-                if($this->p_type != $apiClassName){
-                    $this->p_type = $apiClassName;
-                    $dir = array(API_ROOT."/$this->p_dir/$this->p_type/");
-                    $this->setTemplateDir($dir);
-                }
-                call_user_func(array($apiClass, $action));
-            }
+    public function show($tpl = "")
+    {
+        if (!empty($tpl)) {
+            $this->display($tpl);
+        } else {
+            $this->display($this->apiClassName .'/'.$this->action . '.tpl');
         }
-        $this->display($this->action . '.tpl');
         exit();
     }
 

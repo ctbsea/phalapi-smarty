@@ -84,19 +84,19 @@ PhalApi-Smarty的初始化也和其他拓展一样,我们只需要把上方**Pha
 	</BODY>
 	</HTML>
 
-此时我们再次运行Default.Index接口就有如下显示:
 
-![](http://i.imgur.com/rlIjGI2.png)
+## 支持多命名空间
 
-setParams函数作为参数的媒介把接口中获取的参数放到模版里面进行处理,接受一个数组具体实现是对每一个参数进行**assign**操作,具体可以参考Smarty
+s=Hello.word
 
-我们在show默认不传递参数是,会更具模块名和接口名来匹配对于的模版,比如Default.Index就会匹配到view/Default/Index.tpl,当然我们也可以指定跳转到摸个模版,比如创建一个模版名称为test.tpl,然后创建一个Default.test接口,我们在index接口进行一些修改
-	
-	DI()->smarty->show("Default.test");
+这个时候我们访问App.Hello.word接口(App默认是省略的)
 
-这个时候我们访问Default.Index接口的时候就会先执行Default.Index的代码然后在执行,test方法的代码最好渲染Default中的test.tpl模版
+访问的目录 src/app/View/Hello/word.tpl
 
-**注意:show跳转其他模块接口会执行跳转的接口,如果有参数验证会被拦截,所以使用场景比较适合处理用户登录过时跳转登录页面重新登录这类业务**
+s=User.Weibo.login
+这个时候我们访问User.Hello.word接口 
+
+访问的目录 src/user/View/Weibo/login.tpl
 
 ##其他
 
