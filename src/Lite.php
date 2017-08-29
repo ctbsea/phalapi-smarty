@@ -1,6 +1,6 @@
 <?php
 
-namespace PhalApi\Smarty;
+namespace ctbsea\phalapiSmarty;
 
 /**
  * Created by PhpStorm.
