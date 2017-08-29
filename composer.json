@@ -1,5 +1,5 @@
 {
-    "name": "ctbsea/phalapi-smarty",
+    "name": "ctbsea/phalapiSmarty",
     "description": "基于Smarty模版的处理，专门用于PhalApi 2.x 开源接口框架。",
     "keywords": ["smarty", "phalapi"],
     "version": "2.0.0",
@@ -18,7 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-            "PhalApi\\Smarty\\": "src"
+            "ctbsea\\phalapiSmarty\\": "src"
         }
     }
 
