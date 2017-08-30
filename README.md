@@ -1,4 +1,6 @@
-#基于PhalApi 2.*的Smarty拓展
+#基于PhalApi 2.*的Smarty拓展 
+
+#本版本基于1.0 smarty 做的修改 我只是搬运工
 
 ![](http://webtools.qiniudn.com/master-LOGO-20150410_50.jpg)
 
