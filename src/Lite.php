@@ -29,7 +29,8 @@ class Lite extends \Smarty
     //目录根据s参数目录定位view的目录
     public function __construct($templateDir = "View")
     {
-
+        $this->left_delimiter = '<{'; 
+        $this->right_delimiter = '}>'; 
         //获取模块名
         $service = \PhalApi\DI()->request->getService();
         list($this->module, $this->apiClassName, $this->action) = explode('.', $service);
