@@ -1,3 +1,7 @@
+#最新更新
+支持自定义分隔符
+修改目录统一小写
+
 #基于PhalApi 2.*的Smarty拓展 
 
 #本版本基于1.0 smarty 做的修改 我只是搬运工
@@ -23,13 +27,13 @@ PhalApi Library:[http://git.oschina.net/dogstar/PhalApi-Library](http://git.osch
 composer.json添加
 
     "require": {
-        "ctbsea/phalapi-smarty": "2.0.0"
+        "ctbsea/phalapi-smarty": "dev-master"
     },
 
 ##初始化Smarty
 
 	//接受一个参数,参数为view的路径
-	DI()->smarty = new Smarty_Lite('view');
+	DI()->smarty = new Smarty_Lite('view' ,$leftDelimiter = '<{' ,$right_delimiter='}>');
 
 现在我们就已经初始化好了PhalApi-Smarty
 

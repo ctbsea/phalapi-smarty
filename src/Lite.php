@@ -27,10 +27,10 @@ class Lite extends \Smarty
     protected $action = "";
 
     //目录根据s参数目录定位view的目录
-    public function __construct($templateDir = "View")
+    public function __construct($templateDir = "View" ,$leftDelimiter = '<{' ,$right_delimiter='}>')
     {
-        $this->left_delimiter = '<{'; 
-        $this->right_delimiter = '}>'; 
+        $this->left_delimiter = $leftDelimiter; 
+        $this->right_delimiter = $right_delimiter; 
         //获取模块名
         $service = \PhalApi\DI()->request->getService();
         list($this->module, $this->apiClassName, $this->action) = explode('.', $service);
@@ -68,7 +68,7 @@ class Lite extends \Smarty
         if (!empty($tpl)) {
             $this->display($tpl);
         } else {
-            $this->display($this->apiClassName .'/'.$this->action . '.tpl');
+            $this->display(strtolower($this->apiClassName) .'/'.strtolower($this->action) . '.tpl');
         }
         exit();
     }
