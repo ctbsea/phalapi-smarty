@@ -74,10 +74,6 @@ composer.json添加
 
 ![](http://i.imgur.com/anwqdWh.png)
 
-这样就可以看到如下效果
-
-![](http://i.imgur.com/sGwfd3h.png)
-
 ##总结
 
 当前只是提供了一个简单的封装还有很多需要优化封装的功能其他各位小伙伴的补充.
