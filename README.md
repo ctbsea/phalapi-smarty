@@ -33,8 +33,9 @@ composer.json添加
 
 ##初始化Smarty
 
-	//接受一个参数,参数为view的路径
-	DI()->smarty = new Smarty_Lite('view' ,$leftDelimiter = '<{' ,$right_delimiter='}>');
+	//接受一个参数,参数为view的路径  定界符可以自己定义
+	$di->smarty = new \ctbsea\phalapiSmarty\Lite('view',  '<{' , '}>');
+
 
 现在我们就已经初始化好了PhalApi-Smarty
 
@@ -57,35 +58,13 @@ composer.json添加
                 )
             )
         );
-        DI()->smarty->setParams($param);
-        DI()->smarty->show();
+        \PhalApi\DI()->smarty->setParams($param);
+        \PhalApi\DI()->smarty->show();
     }
 
 同时修改index.tpl:
 
-	<HTML>
-	<HEAD>
-	    <style type="text/css">
-	        p,table{
-	            margin: auto;
-	            width: 60%;
-	        }
-	    </style>
-	</HEAD>
-	<BODY>
-	Hello {$name}, welcome to smarty<br/>
-	
-	<table border="1">
-	    {section name = sec loop = $list}
-	        <tr>
-	            <td>{$list[sec].id}</td>
-	            <td>{$list[sec].name}</td>
-	        </tr>
-	    {/section}
-	</table>
-	
-	</BODY>
-	</HTML>
+    Hello <{$name}>, welcome to smarty<br/>
 
 此时我们再次运行Default.Index接口就有如下显示:
 
@@ -95,7 +74,7 @@ setParams函数作为参数的媒介把接口中获取的参数放到模版里�
 
 我们在show默认不传递参数是,会更具模块名和接口名来匹配对于的模版,比如Default.Index就会匹配到view/Default/Index.tpl,当然我们也可以指定跳转到摸个模版,比如创建一个模版名称为test.tpl,然后创建一个Default.test接口,我们在index接口进行一些修改
 	
-	DI()->smarty->show("Default.test");
+	\PhalApi\DI()->smarty->show("Default.test");
 
 这个时候我们访问Default.Index接口的时候就会先执行Default.Index的代码然后在执行,test方法的代码最好渲染Default中的test.tpl模版
 
