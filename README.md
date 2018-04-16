@@ -66,20 +66,6 @@ composer.json添加
 
     Hello <{$name}>, welcome to smarty<br/>
 
-此时我们再次运行Default.Index接口就有如下显示:
-
-![](http://i.imgur.com/rlIjGI2.png)
-
-setParams函数作为参数的媒介把接口中获取的参数放到模版里面进行处理,接受一个数组具体实现是对每一个参数进行**assign**操作,具体可以参考Smarty
-
-我们在show默认不传递参数是,会更具模块名和接口名来匹配对于的模版,比如Default.Index就会匹配到view/Default/Index.tpl,当然我们也可以指定跳转到摸个模版,比如创建一个模版名称为test.tpl,然后创建一个Default.test接口,我们在index接口进行一些修改
-	
-	\PhalApi\DI()->smarty->show("Default.test");
-
-这个时候我们访问Default.Index接口的时候就会先执行Default.Index的代码然后在执行,test方法的代码最好渲染Default中的test.tpl模版
-
-**注意:show跳转其他模块接口会执行跳转的接口,如果有参数验证会被拦截,所以使用场景比较适合处理用户登录过时跳转登录页面重新登录这类业务**
-
 ##其他
 
 如果大家在使用IDE开发的时候嫌DI->smarty没有提示的话可以在如下目录加入此注释
