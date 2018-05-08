@@ -46,6 +46,7 @@ class Lite extends \Smarty
         //只精确到view目录 不精确到具体的类和action
         $dir = array(API_ROOT . "/src/$this->module/$this->p_dir/");
         $this->setTemplateDir($dir);
+        $this->setCompileDir(API_ROOT . "/runtime/template_c/");
     }
 
     /**
